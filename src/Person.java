@@ -123,7 +123,7 @@ public class Person {
         str3 = str3.concat("value2");
         System.out.println(str3);
 
-*/
+
         String s1 = "abcde";
         s1 = s1.replace('a', 'x');
         System.out.println(s1);
@@ -152,6 +152,30 @@ public class Person {
         String string = "Hello Sir";
         System.out.println(string.length());
 
+        int num = 0;
+        int number2 = 1;
+        try {
+            int result = number2 / num;
+        }
+      catch (ArithmeticException e) {
+          System.out.println("Kan ikke dividere med 0. " + e);
+      }
 
+
+
+        ArrayList<String> lststr = new ArrayList<>();
+        for (int i = 0; i < 200000000; i++) {
+            lststr.add("Hello World");
+        }
+        System.out.println(lststr.size());
+*/
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 2000000; i++) {
+            sb = sb.append("12345678901234567890123456789012345678901234567890" + i);
+        }
+       // System.out.println("size s11=" + sb.length());
+        System.out.println(sb);
     }
+
+
 }
