@@ -1,15 +1,19 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
-public class Person {
+public class Person implements Comparable, Doable {
     private String firstName;
     private String lastName;
+    private int age;
     private static int numberOfPeople;
 
-    public Person(String firstName, String lastName) {
+    public Person(String firstName, String lastName, int age) {
+        this.age = age;
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -42,8 +46,9 @@ public class Person {
 
 
     public String toString() {
-        return firstName + " " + lastName;
+        return firstName + " " + lastName + " " + age;
     }
+
 
     public int sum(int... numbers) {
         int sum = 0;
@@ -51,6 +56,17 @@ public class Person {
             sum += number;
         }
         return sum;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        Person otherPerson = (Person) o;
+        return this.age - otherPerson.age;
+        // return this.firstName.compareTo(o.firstName);
+    }
+
+    public int getAge() {
+        return age;
     }
 
 
@@ -168,14 +184,106 @@ public class Person {
             lststr.add("Hello World");
         }
         System.out.println(lststr.size());
-*/
+
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < 2000000; i++) {
             sb = sb.append("12345678901234567890123456789012345678901234567890" + i);
         }
+
+
        // System.out.println("size s11=" + sb.length());
         System.out.println(sb);
+
+
+        ArrayList<Person> lstP = new ArrayList<>();
+        Person pp = new Person("Jens", "Hansen", 10);
+        lstP.add(new Person("Lars", "Larsen", 20));
+        lstP.add(pp);
+        lstP.add(pp);
+        lstP.add(new Person("Lars", "dsfdsfdsf", 5));
+        lstP.add(new Person("Lars", "adsdsdsa", 1));
+        lstP.add(new Person("Lars", "tgdfgfdgg", 3));
+        lstP.add(new Person("Lars", "uhfghgfh", 25));
+        lstP.add(new Person("Lars", "fasdsadsda", 18));
+
+        System.out.println(lstP);
+
+        Collections.sort(lstP, new PersonAgeComparator());
+
+        System.out.println(lstP);
+
+        for (int i = 0; i < lstP.size(); i++) {
+            if (lstP.get(i).getFirstName().equalsIgnoreCase("Jens")) {
+                lstP.remove(i);
+                i--;
+            }
+
+
+        }
+
+
+
+        try {
+            //Some logic
+            String str = "123x";
+            Integer i = Integer.parseInt(str);
+            System.out.println("This will never print");
+            return;
+        } catch (Exception e) {
+            System.out.println("Har fanget exception.");
+            return;
+        } finally {
+            System.out.println("nu er den her");
+
+        }
+
+
+        ArrayList<String> lststr = new ArrayList<>();
+        for (int i = 0; i < 200000000; i++) {
+            lststr.add("Hello World" + i);
+        }
+        System.out.println(lststr.size());
+
+
+
+        int[] values = {2, 1, 5, 3, 8, 10, 13, 5};
+        int b = 0;
+        while (b <= values[b]) {
+            System.out.println(values[b]);
+            b++;
+        }
+
+
+         */
+
+        int[] values = {2, 5, 5, 6, 8, 10, 12, 1};
+        int a = 0;
+        while (values[a] <= values[a + 1]) {
+            System.out.println(values[a]);
+            a++;
+        }
+        ArrayList<Doable> doables = new ArrayList();
+        doables.add(new Dude());
+        doables.add(new Dude());
+        doables.add(new Dude());
+        doables.add(new Dude());
+        doables.add(new Person("Martin", "Pedersen", 12));
+        doables.add(new Dude());
+        doables.add(new Person("dfdf", "sffsd", 20));
+        for (Doable doable: doables) {
+            if (doable instanceof Dude) {
+                System.out.println(((Dude) doable).doSomethingElse());
+            }
+            else {
+                System.out.println(doable.doSomething());
+            }
+        }
+
+
     }
 
-
+    @Override
+    public String doSomething() {
+        return "Doing something as a person";
+    }
 }

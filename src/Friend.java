@@ -1,4 +1,6 @@
-public class Friend {
+import java.util.Iterator;
+
+public class Friend implements Comparable<Friend> {
     private String name;
     private String phoneNumber;
     private String email;
@@ -12,6 +14,7 @@ public class Friend {
     public String toString() {
         return name + " " + phoneNumber + " " + email;
     }
+
     public boolean equals(Object o) {
         Friend otherFriend = (Friend) o;
         return this.name == otherFriend.name
@@ -26,5 +29,10 @@ public class Friend {
     }
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    @Override
+    public int compareTo(Friend o) {
+        return this.name.compareTo(o.name);
     }
 }
